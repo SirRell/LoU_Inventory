@@ -6,7 +6,8 @@ using UnityEngine;
 public enum ItemType
 {
     Bandages,
-    Alcohol
+    Alcohol,
+    Ammo_Pistol
 }
 
 public class Item : MonoBehaviour

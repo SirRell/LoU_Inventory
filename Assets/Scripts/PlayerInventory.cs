@@ -24,6 +24,8 @@ public class PlayerInventory : MonoBehaviour
             case ItemType.Alcohol:
                 bottleCount += item.amount;
                 break;
+            case ItemType.Ammo_Pistol:
+                break;
             default:
                 break;
         }
