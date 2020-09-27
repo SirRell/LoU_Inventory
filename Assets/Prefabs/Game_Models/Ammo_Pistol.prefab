@@ -183,6 +183,7 @@ GameObject:
   - component: {fileID: 4382381756558715787}
   - component: {fileID: 8922892333627938646}
   - component: {fileID: 8994735490719206823}
+  - component: {fileID: 7557253304514248109}
   m_Layer: 0
   m_Name: Ammo_Pistol
   m_TagString: Untagged
@@ -296,3 +297,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7557253304514248109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6386472605709552159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c3699573f7564940bb96b033d0bfb4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amount: 1
+  type: 2
+  itemName: Pistol Ammo

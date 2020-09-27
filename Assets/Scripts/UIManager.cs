@@ -6,10 +6,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     UIManager Instance;
-    [SerializeField]
-    RectTransform selector;
-    [SerializeField]
-    RectTransform selection;
+    public RectTransform selector;
 
     [Header("Inventory Slots")]
     public GameObject[] left;
@@ -41,7 +38,7 @@ public class UIManager : MonoBehaviour
 
     void UpdateUI()
     {
-        selector.position = selection.position;
+        
     }
 
     void Update()
@@ -54,60 +51,96 @@ public class UIManager : MonoBehaviour
                 StartCoroutine(ShowInventory());
             }
             activeTimer = 5f;
+            bool moved = false;
 
             inventoryDirection = new Vector2(Input.GetAxisRaw("Inventory_Horizontal"), Input.GetAxisRaw("Inventory_Vertical"));
 
             if(inventoryDirection == Vector2.left)
             {
-                if(selector.position == left[0].transform.position)
+                for (int i = 0; i < left.Length; i++)
                 {
-                    selector.position = left[1].transform.position;
+                    if (selector.position == left[i].transform.position)
+                    {
+                        if (++i < left.Length)
+                        {
+                            selector.position = left[i].transform.position;
+                        }
+                        else
+                        {
+                            selector.position = left[0].transform.position;
+                        }
+                        moved = true;
+                        break;
+                    }
                 }
-                else
-                {
+                if (!moved)
                     selector.position = left[0].transform.position;
-                }
+
             }
             else if(inventoryDirection == Vector2.up)
             {
-                if (selector.position == up[0].transform.position)
+                for (int i = 0; i < up.Length; i++)
                 {
-                    selector.position = up[1].transform.position;
+                    if (selector.position == up[i].transform.position)
+                    {
+                        if (++i < up.Length)
+                        {
+                            selector.position = up[i].transform.position;
+                        }
+                        else
+                        {
+                            selector.position = up[0].transform.position;
+                        }
+                        moved = true;
+                        break;
+                    }
                 }
-                else
-                {
+                if (!moved)
                     selector.position = up[0].transform.position;
-                }
             }
             else if (inventoryDirection == Vector2.right)
             {
-                if (selector.position == right[0].transform.position)
+                for (int i = 0; i < right.Length; i++)
                 {
-                    selector.position = right[1].transform.position;
+                    if (selector.position == right[i].transform.position)
+                    {
+                        if (++i < right.Length)
+                        {
+                            selector.position = right[i].transform.position;
+                        }
+                        else
+                        {
+                            selector.position = right[0].transform.position;
+                        }
+                        moved = true;
+                        break;
+                    }
                 }
-                else
-                {
+                if (!moved)
                     selector.position = right[0].transform.position;
-                }
             }
             else if (inventoryDirection == Vector2.down)
             {
-                if (selector.position == down[0].transform.position)
+                for (int i = 0; i < down.Length; i++)
                 {
-                    selector.position = down[1].transform.position;
+                    if (selector.position == down[i].transform.position)
+                    {
+                        if (++i < down.Length)
+                        {
+                            selector.position = down[i].transform.position;
+                        }
+                        else
+                        {
+                            selector.position = down[0].transform.position;
+                        }
+                        moved = true;
+                        break;
+                    }
                 }
-                else if(selector.position == down[1].transform.position)
-                {
-                    selector.position = down[2].transform.position;
-                }
-                else
-                {
+                if (!moved)
                     selector.position = down[0].transform.position;
-                }
             }
         }
-        else
-            inventoryDirection = Vector2.zero;
 
         if (activeInventory)
         {

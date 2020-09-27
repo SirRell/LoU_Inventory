@@ -1522,7 +1522,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.108063735, y: 0.000000016609265, z: -0.000000002003231, w: 0.994144}
+  m_LocalRotation: {x: 0.108063735, y: 0.000000016609265, z: -0.000000002003226, w: 0.994144}
   m_LocalPosition: {x: 0, y: 3, z: -1.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2669,7 +2669,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1715615382}
-  m_LocalRotation: {x: 0.1080637, y: -0.000000018144377, z: 0.0000000017744992, w: 0.994144}
+  m_LocalRotation: {x: 0.1080637, y: -0.000000018144377, z: 0.0000000017745039, w: 0.994144}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3411,7 +3411,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2134224813}
-  m_LocalRotation: {x: 0.10806372, y: 0.000000016672827, z: -0.0000000025879778, w: 0.994144}
+  m_LocalRotation: {x: 0.10806372, y: 0.000000016672827, z: -0.0000000025879736, w: 0.994144}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3613,27 +3613,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0cd92736e1ed704bbc2d50ea44f5e61, type: 3}
---- !u!1 &463006145037790657 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6386472605709552159, guid: a0cd92736e1ed704bbc2d50ea44f5e61,
-    type: 3}
-  m_PrefabInstance: {fileID: 463006145037790656}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &463006145037790658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 463006145037790657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c3699573f7564940bb96b033d0bfb4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  amount: 1
-  type: 2
-  itemName: Pistol Ammo
 --- !u!1001 &4399919133308749078
 PrefabInstance:
   m_ObjectHideFlags: 0
