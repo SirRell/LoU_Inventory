@@ -12,23 +12,22 @@ public class PlayerAction : MonoBehaviour
     /// when item is picked up, play player animation for pickup
     /// </summary>
 
-    public float radius = 4;
-    public Vector3 offset = Vector3.zero;
-    public TextMeshProUGUI interactionPopUp;
-    Collider[] availableItems;
-    GameObject closestItem = null;
-    PlayerInventory inventory;
+    public float radius = 4;    //Area the player can see items
+    public Vector3 offset = Vector3.zero;   //Offset from player
+    public TextMeshProUGUI interactionPopUp;    //Show what is currently selected, and will be picked up
+    Collider[] availableItems;  //What items are available to pickup
+    GameObject closestItem = null;  //Nearest item to player
 
     void Start()
     {
-        inventory = GetComponent<PlayerInventory>();
+
     }
 
     private void Update()
     {
         if(closestItem != null && Input.GetKeyDown(KeyCode.X))
         {
-            inventory.AddItem(closestItem.GetComponent<Item>());
+            PlayerInventory.Instance.AddItem(closestItem.GetComponent<Item>());
         }
     }
 

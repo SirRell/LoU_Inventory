@@ -9,13 +9,16 @@ public class UIManager : MonoBehaviour
     public RectTransform selector;
 
     [Header("Inventory Slots")]
-    public GameObject[] left;
-    public GameObject[] up, right, down;
+    public GameObject[] left; //Heavy guns
+    public GameObject[] up, right, down; //Medkit & Granade, Handguns, Bottle/Brick & Molotov & Smoke
     Vector2 inventoryDirection;
     CanvasGroup inventoryUI;
     bool activeInventory = false;
     float activeTimer = 5f;
     public float fadeSpeed = 1.5f;
+
+    InventorySlot slot;
+
     void Awake()
     {
         //Make this the only UI Manager, and easily accessible
@@ -31,18 +34,32 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        UpdateUI();
         inventoryUI = GameObject.Find("Inventory").GetComponent<CanvasGroup>();
         inventoryUI.alpha = 0;
+        PlayerInventory.Instance.GainItem += UpdateUI;
     }
 
-    void UpdateUI()
+    void UpdateUI(Item item)
     {
-        
+        switch (item.type)
+        {
+            case ItemType.Bandages:
+                up[0].GetComponent<InventorySlot>().UpdateAmount(true, item.amount);
+                break;
+            case ItemType.Alcohol:
+                down[1].GetComponent<InventorySlot>().UpdateAmount(true, item.amount);
+                break;
+            case ItemType.Ammo_Pistol:
+                right[0].GetComponent<InventorySlot>().UpdateAmount(true, item.amount);
+                break;
+            default:
+                break;
+        }
     }
 
     void Update()
     {
+        #region Display inventory & Inventory selection
         if (Input.GetButtonDown("Inventory_Horizontal") || Input.GetButtonDown("Inventory_Vertical"))
         {
             if (!activeInventory)
@@ -150,6 +167,7 @@ public class UIManager : MonoBehaviour
                 StartCoroutine(HideInventory());
             }
         }
+        #endregion
     }
 
     IEnumerator ShowInventory()

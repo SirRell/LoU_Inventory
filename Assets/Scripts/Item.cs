@@ -12,9 +12,10 @@ public enum ItemType
 
 public class Item : MonoBehaviour
 {
-    public int amount = 1;
-    public ItemType type;
-    public string itemName;
+    public int amount = 1;  //Amount to be picked up
+    public ItemType type;   //Type of the item
+    public string itemName; //Name of the item
+    public Sprite itemImage;    //Inventory slot image
 
     public void Pickup()
     {
