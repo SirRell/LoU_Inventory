@@ -5,9 +5,18 @@ using UnityEngine;
 
 public enum ItemType
 {
+    None,
     Bandages,
     Alcohol,
-    Ammo_Pistol
+    Ammo_Pistol,
+    Ammo_Shotgun,
+    Ammo_Rifle,
+    Ammo_Revolver,
+    Grenade,
+    Throwable,
+    Molotov,
+    SmokeGrenade
+
 }
 
 public class Item : MonoBehaviour

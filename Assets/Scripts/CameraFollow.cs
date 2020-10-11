@@ -21,7 +21,7 @@ public class CameraFollow : MonoBehaviour
         target = GameObject.FindWithTag("Player").transform;
     }
 
-    void LateUpdate()
+    void Update()
     {
         Vector3 characterOffset = target.position + offset;
 

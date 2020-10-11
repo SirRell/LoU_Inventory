@@ -24,16 +24,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-            //if (anim)
-            //{
-
-            //    ///stateInfo = anim.GetCurrentAnimatorStateInfo(0);
-            //    ///Translate controls stick coordinates into world/cam/character space
-            //    ///StickToWorldSpace(ref direction, ref speed);
-
-            //    //Pull values from controller/keyboard
-
-            //}
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
@@ -64,49 +54,6 @@ public class PlayerMovement : MonoBehaviour
     {
         speed = new Vector2(horizontalInput, verticalInput).sqrMagnitude;
         anim.SetFloat("Speed", speed);
-        //anim.SetFloat("Direction", horizontalInput);
+        anim.SetFloat("Direction", horizontalInput);
     }
-
-
-
-
-    //void FixedUpdate()
-    //{
-    //    if(IsInLocomotion() && ((direction >= 0 && horizontal >= 0) || (direction < 0 && horizontal < 0)))
-    //    {
-    //        Vector3 rotationAmount = Vector3.Lerp(Vector3.zero, new Vector3(0, rotationDegreePerSecond * 
-    //            (horizontal < 0f ? -1f : 1f), 0f), Mathf.Abs(horizontal));
-    //        Quaternion deltaRotation = Quaternion.Euler(rotationAmount * Time.deltaTime);
-    //        transform.rotation *= deltaRotation;
-    //    }
-
-    //    anim.SetFloat("Speed", speed);
-    //    anim.SetFloat("Direction", direction, directionDampTime, Time.deltaTime);
-    //}
-
-    //public void StickToWorldSpace(ref float directionOut, ref float speedOut)
-    //{
-    //    Vector3 transformDirection = transform.forward;
-    //    Vector3 stickDirection = new Vector3(horizontal, 0, vertical);
-    //    speedOut = stickDirection.sqrMagnitude;
-
-    //    //Get camera rotation
-    //    Vector3 cameraDirection = cam.transform.forward;
-    //    cameraDirection.y = 0.0f; //Kill y
-    //    Quaternion referentialShift = Quaternion.FromToRotation(Vector3.forward, cameraDirection);
-
-    //    //Convert joystick input in Worldspace coordinates
-    //    Vector3 moveDirection = referentialShift * stickDirection;
-    //    Vector3 axisSign = Vector3.Cross(moveDirection, transformDirection);
-
-    //    float angleRootToMove = Vector3.Angle(transformDirection, moveDirection) * (axisSign.y >= 0 ? -1f : 1f);
-
-    //    angleRootToMove /= 180f;
-    //    directionOut = angleRootToMove * speed;
-    //}
-
-    //bool IsInLocomotion()
-    //{
-    //    return stateInfo.fullPathHash == m_LocomotionId;
-    //}
 }

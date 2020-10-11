@@ -1,6 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 using TMPro;
 
 public class PlayerAction : MonoBehaviour
@@ -17,18 +18,51 @@ public class PlayerAction : MonoBehaviour
     public TextMeshProUGUI interactionPopUp;    //Show what is currently selected, and will be picked up
     Collider[] availableItems;  //What items are available to pickup
     GameObject closestItem = null;  //Nearest item to player
+    Animator anim;
+    bool pickingUpItem;
+    public TwoBoneIKConstraint multiAim;
+    public float animWeight = 1;
+    public Transform armTarget;
 
     void Start()
     {
-
+        anim = GetComponent<Animator>();
     }
 
     private void Update()
     {
         if(closestItem != null && Input.GetKeyDown(KeyCode.X))
         {
-            PlayerInventory.Instance.AddItem(closestItem.GetComponent<Item>());
+            PlayerInventory.Instance.PickUpItem(closestItem.GetComponent<Item>());
+            anim.SetTrigger("Pickup");
+            if (!pickingUpItem)
+            {
+                StartCoroutine(SetArmConstraint());
+                pickingUpItem = true;
+            }
+
+            armTarget.position = closestItem.transform.position;
         }
+    }
+
+    IEnumerator SetArmConstraint()
+    {
+        float time = 0;
+        while (multiAim.weight <= .99f)
+        {
+            multiAim.weight = Mathf.Lerp(0, 1, time * animWeight);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        time = 0;
+        while(multiAim.weight >= .01f)
+        {
+            multiAim.weight = Mathf.Lerp(1, 0, time * animWeight);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        pickingUpItem = false;
+        yield return null;
     }
 
     void FixedUpdate()
@@ -46,7 +80,7 @@ public class PlayerAction : MonoBehaviour
     public void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position + offset, radius);
+        //Gizmos.DrawSphere(transform.position + offset, radius);
     }
 
     void GetItemsInRadius()
