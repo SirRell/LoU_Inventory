@@ -19,10 +19,9 @@ public class PlayerAction : MonoBehaviour
     Collider[] availableItems;  //What items are available to pickup
     GameObject closestItem = null;  //Nearest item to player
     Animator anim;
-    bool pickingUpItem;
-    public TwoBoneIKConstraint multiAim;
-    public float animWeight = 1;
-    public Transform armTarget;
+    
+    [SerializeField] Transform pickupHand;
+    public Transform rigIKHandTarget;
 
     void Start()
     {
@@ -35,35 +34,39 @@ public class PlayerAction : MonoBehaviour
         {
             PlayerInventory.Instance.PickUpItem(closestItem.GetComponent<Item>());
             anim.SetTrigger("Pickup");
-            if (!pickingUpItem)
-            {
-                StartCoroutine(SetArmConstraint());
-                pickingUpItem = true;
-            }
-
-            armTarget.position = closestItem.transform.position;
+            
+            rigIKHandTarget.position = closestItem.transform.position;
+            rigIKHandTarget.forward = closestItem.transform.up;
         }
     }
 
-    IEnumerator SetArmConstraint()
+    public void SetPickUpObjectParent()
     {
-        float time = 0;
-        while (multiAim.weight <= .99f)
-        {
-            multiAim.weight = Mathf.Lerp(0, 1, time * animWeight);
-            time += Time.deltaTime;
-            yield return null;
-        }
-        time = 0;
-        while(multiAim.weight >= .01f)
-        {
-            multiAim.weight = Mathf.Lerp(1, 0, time * animWeight);
-            time += Time.deltaTime;
-            yield return null;
-        }
-        pickingUpItem = false;
-        yield return null;
+        closestItem.transform.SetParent(pickupHand);
+        closestItem.transform.localPosition = Vector3.zero;
+        closestItem.GetComponent<Rigidbody>().isKinematic = true;
+        closestItem.GetComponent<Collider>().isTrigger = true;
     }
+
+    // IEnumerator SetArmConstraint()
+    // {
+    //     float time = 0;
+    //     while (multiAim.weight <= .99f)
+    //     {
+    //         multiAim.weight = Mathf.Lerp(0, 1, time * animWeight);
+    //         time += Time.deltaTime;
+    //         yield return null;
+    //     }
+    //     time = 0;
+    //     while(multiAim.weight >= .01f)
+    //     {
+    //         multiAim.weight = Mathf.Lerp(1, 0, time * animWeight);
+    //         time += Time.deltaTime;
+    //         yield return null;
+    //     }
+    //     pickingUpItem = false;
+    //     yield return null;
+    // }
 
     void FixedUpdate()
     {

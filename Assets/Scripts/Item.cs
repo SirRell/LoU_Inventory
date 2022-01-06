@@ -28,6 +28,11 @@ public class Item : MonoBehaviour
 
     public void Pickup()
     {
+        Invoke("DestroyItem", 1f);
+    }
+
+    void DestroyItem()
+    {
         Destroy(gameObject);
     }
 }

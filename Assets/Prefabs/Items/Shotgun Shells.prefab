@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1454825959373901744}
   - component: {fileID: 1097747139515662545}
   - component: {fileID: 5659841683807479365}
+  - component: {fileID: -2125139647900480161}
   m_Layer: 0
   m_Name: Shotgun Shells
   m_TagString: Untagged
@@ -112,3 +113,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.7436682, y: 1.5082073, z: 2.1033573}
   m_Center: {x: 0, y: -0.004439354, z: -0.013003349}
+--- !u!54 &-2125139647900480161
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8319325554757108053}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
